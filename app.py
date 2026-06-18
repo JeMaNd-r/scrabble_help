@@ -23,12 +23,18 @@ def inp_letters():
 
     Deine Buchstaben: ''')
     print("")
-    
+
+    if len(l_inp) < 1:
+        l_inp = "ETTAEST"
+        print(f"WARNUNG: Keine Buchstaben erhalten. Folgenden Buchstaben werden ausgewählt: { l_inp }")
+        print("")
+
     l = sorted( list( l_inp.lower() ) )
 
     return l
 
 LETTERS = inp_letters()
+
 
 ## Funtion to count letters
 def count_letters(letters):
@@ -42,13 +48,14 @@ def count_letters(letters):
     
     print("# ANZAHL DER BUCHSTABEN #")
     print(f'''
-    Du hast folgende Buchstaben: 
+    Du hast folgende {sum(d.values())} Buchstaben: 
     {[str(n) + "x " + a.upper() for a,n in d.items()]}
     ''')
 
     return d
 
 L_COUNT = count_letters(LETTERS)
+
 
 ## Function to match letters to dictonary words
 
