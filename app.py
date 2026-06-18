@@ -14,8 +14,21 @@ LETTER_SCORES = {
     "QZ": 10 }
 
 ## Function to take user input letters
+def inp_letters():
+    LETTERS = input('''# ABFRAGE DER BUCHSTABEN #
 
+    Bitte gib deine Buchstaben ohne Trennzeichen ein.
+    Groß- oder Kleinbuchstaben spielen keine Rolle. Bsp.: AelLNZ
+    Bestätige deine Eingabe mit ENTER.
 
+    Deine Buchstaben: ''')
+
+    letters = LETTERS.lower()
+
+    return letters
+
+l = inp_letters()
+print(l)
 
 ## Function to match letters to dictonary words
 
