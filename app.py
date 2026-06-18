@@ -14,7 +14,7 @@ LETTER_SCORES = {
     "QZ": 10 }
 
 ## Function to take user input letters
-def inp_letters():
+def inp_letters() :
     print("# ABFRAGE DER BUCHSTABEN #")
     l_inp = input('''
     Bitte gib deine Buchstaben ohne Trennzeichen ein.
@@ -24,7 +24,7 @@ def inp_letters():
     Deine Buchstaben: ''')
     print("")
 
-    if len(l_inp) < 1:
+    if len(l_inp) < 1 :
         l_inp = "ETTAEST"
         print(f"WARNUNG: Keine Buchstaben erhalten. Folgenden Buchstaben werden ausgewählt: { l_inp }")
         print("")
@@ -37,11 +37,11 @@ LETTERS = inp_letters()
 
 
 ## Funtion to count letters
-def count_letters(letters):
+def count_letters(letters) :
     d = dict()
 
-    for letter in letters:
-        if letter not in d:
+    for letter in letters :
+        if letter not in d :
             d[letter] = 1
         else :
             d[letter] += 1
