@@ -15,20 +15,40 @@ LETTER_SCORES = {
 
 ## Function to take user input letters
 def inp_letters():
-    LETTERS = input('''# ABFRAGE DER BUCHSTABEN #
-
+    print("# ABFRAGE DER BUCHSTABEN #")
+    l_inp = input('''
     Bitte gib deine Buchstaben ohne Trennzeichen ein.
     Groß- oder Kleinbuchstaben spielen keine Rolle. Bsp.: AelLNZ
     Bestätige deine Eingabe mit ENTER.
 
     Deine Buchstaben: ''')
+    print("")
+    
+    l = sorted( list( l_inp.lower() ) )
 
-    letters = LETTERS.lower()
+    return l
 
-    return letters
+LETTERS = inp_letters()
 
-l = inp_letters()
-print(l)
+## Funtion to count letters
+def count_letters(letters):
+    d = dict()
+
+    for letter in letters:
+        if letter not in d:
+            d[letter] = 1
+        else :
+            d[letter] += 1
+    
+    print("# ANZAHL DER BUCHSTABEN #")
+    print(f'''
+    Du hast folgende Buchstaben: 
+    {[str(n) + "x " + a.upper() for a,n in d.items()]}
+    ''')
+
+    return d
+
+L_COUNT = count_letters(LETTERS)
 
 ## Function to match letters to dictonary words
 
