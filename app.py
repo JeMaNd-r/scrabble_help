@@ -95,5 +95,21 @@ def check_words(letters_dict, word_dict, letter_scores):
 WORDS = check_words(L_COUNT, WORD_DICT, LETTER_SCORES)         
 
 ## Function to select highest-scoring word based on point(s) per letter
+def best_words(possible_words):
+    word_dict = [ (s,w) for w,s in possible_words.items() ]
+    word_dict = sorted( word_dict, reverse=True )
+    word_best = dict( [ (w,s) for s,w in word_dict[0:5] ] )
+    
+    # OPTIONAL: if there are multiplication fields at certain letter positions
+    # ... increase scores...
 
-## Function to return top 5 words
+    print("# WÖRTER MIT DEN MEISTEN PUNKTEN #")
+    print(f'''
+    Folgende Wörter bringen dir die meisten Punkte:
+    {word_best}
+    ''')
+    
+    return word_best
+
+WORDS_TOP5 = best_words(WORDS)
+
