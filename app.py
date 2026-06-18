@@ -5,13 +5,23 @@
 
 ## Define constants
 LETTER_SCORES = {
-    "AEILNORSTU": 1,
-    "DG": 2,
-    "BCMP": 3,
-    "FHVWY": 4,
+    "A": 1, "E": 1, "I": 1, "L": 1, "N": 1, "O": 1, "R": 1, "S": 1, "T": 1, "U": 1,
+    "D": 2, "G": 2,
+    "B": 3, "C": 3, "M": 3, "P": 3,
+    "F": 4, "H": 4, "V": 4, "W": 4, "Y": 4,
     "K": 5,
-    "JX": 8,
-    "QZ": 10 }
+    "J": 8, "X": 8,
+    "Q": 10, "Z": 10
+}
+
+WORD_DICT = [
+    "Test",
+    "festet",
+    "festete",
+    "Fester",
+    "Festat"
+]
+
 
 ## Function to take user input letters
 def inp_letters() :
@@ -25,7 +35,7 @@ def inp_letters() :
     print("")
 
     if len(l_inp) < 1 :
-        l_inp = "ETTAEST"
+        l_inp = "EEFTSET"
         print(f"WARNUNG: Keine Buchstaben erhalten. Folgenden Buchstaben werden ausgewählt: { l_inp }")
         print("")
 
@@ -58,6 +68,33 @@ L_COUNT = count_letters(LETTERS)
 
 
 ## Function to match letters to dictonary words
+def check_words():
+    letters_dict = L_COUNT
+    possible_words = {}
+    for word in WORD_DICT:
+        score = 0
+        for i in range(len(word)) :
+            letter = word[i].lower()
+            if letter not in letters_dict :
+                break
+            
+            if letters_dict.get(letter) < word.count(letter) :
+                break
+            
+            score += LETTER_SCORES.get(letter.upper())
+            
+            if i == (len(word)-1):
+                possible_words[word] = score
+    
+    print("# MÖGLICHE WÖRTER #")
+    print(f'''
+    Folgende Wörter kannst du mit deinen Buchstaben bilden: 
+    {list(possible_words.keys())}''')
+
+    return possible_words
+
+WORDS = check_words()         
+    
 
 ## Function to select highest-scoring word based on point(s) per letter
 
