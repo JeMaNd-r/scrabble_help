@@ -68,10 +68,9 @@ L_COUNT = count_letters(LETTERS)
 
 
 ## Function to match letters to dictonary words
-def check_words():
-    letters_dict = L_COUNT
+def check_words(letters_dict, word_dict, letter_scores):
     possible_words = {}
-    for word in WORD_DICT:
+    for word in word_dict:
         score = 0
         for i in range(len(word)) :
             letter = word[i].lower()
@@ -81,7 +80,7 @@ def check_words():
             if letters_dict.get(letter) < word.count(letter) :
                 break
             
-            score += LETTER_SCORES.get(letter.upper())
+            score += letter_scores.get(letter.upper())
             
             if i == (len(word)-1):
                 possible_words[word] = score
@@ -93,8 +92,7 @@ def check_words():
 
     return possible_words
 
-WORDS = check_words()         
-    
+WORDS = check_words(L_COUNT, WORD_DICT, LETTER_SCORES)         
 
 ## Function to select highest-scoring word based on point(s) per letter
 
