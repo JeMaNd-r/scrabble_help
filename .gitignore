@@ -1,3 +1,6 @@
 # Input PDF to extract words
 LernWB_A4_4Spalten_2021.pdf
 LernWB_A4_4Spalten_2021.txt
+
+# Python cache
+*.pyc
