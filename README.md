@@ -10,11 +10,16 @@ Download the repository and run the *app.py* file using a terminal in VS Code or
 
 - Python 3.14.5
 
-Following Python libraries are used for data preparation:
+Following Python libraries are used:
+
+- time (to pause execution)
+- json (save and read JSON files to store word list)
+
+Additionally, following Python libraries are used for data preparation:
 
 - pypdf-6.13.3 (load and extract text from PDF)
 - re (extract string pattern)
-- json (save and read JSON to store word list)
+
 
 ### Installing
 

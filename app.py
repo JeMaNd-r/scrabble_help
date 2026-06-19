@@ -1,6 +1,14 @@
 # App to provide the best-scoring word in Scrabble based on a user-given set of letters
 
 ## Load libraries
+import json
+import time
+
+## Import functions saved in other py file
+from functions import inp_letters
+from functions import count_letters
+from functions import check_words
+from functions import best_words
 
 
 ## Define constants
@@ -10,106 +18,40 @@ LETTER_SCORES = {
     "B": 3, "C": 3, "M": 3, "P": 3,
     "F": 4, "H": 4, "V": 4, "W": 4, "Y": 4,
     "K": 5,
-    "J": 8, "X": 8,
+    "Ä": 6, "Ü": 6,
+    "J": 8, "X": 8, "Ö": 8,
     "Q": 10, "Z": 10
 }
 
-WORD_DICT = [
-    "Test",
-    "festet",
-    "festete",
-    "Fester",
-    "Festat"
-]
+# WORD_DICT = [
+#     "Test",
+#     "festet",
+#     "festete",
+#     "Fester",
+#     "Festat"
+# ]
+
+with open("wordlist.json", 'r') as f:
+    WORD_DICT = json.load(f)
 
 
-## Function to take user input letters
-def inp_letters() :
-    print("# ABFRAGE DER BUCHSTABEN #")
-    l_inp = input('''
-    Bitte gib deine Buchstaben ohne Trennzeichen ein.
-    Groß- oder Kleinbuchstaben spielen keine Rolle. Bsp.: AelLNZ
-    Bestätige deine Eingabe mit ENTER.
+# Perform app
 
-    Deine Buchstaben: ''')
+while True:
+    LETTERS = inp_letters()
+    time.sleep(3)
+
+    L_COUNT = count_letters(LETTERS)
+
+    WORDS = check_words(L_COUNT, WORD_DICT, LETTER_SCORES)         
+    time.sleep(3)
+
+    WORDS_TOP5 = best_words(WORDS)
+
+    print("Na, welches nimmst du?")
+    time.sleep(3)
+
     print("")
-
-    if len(l_inp) < 1 :
-        l_inp = "EEFTSET"
-        print(f"WARNUNG: Keine Buchstaben erhalten. Folgenden Buchstaben werden ausgewählt: { l_inp }")
-        print("")
-
-    l = sorted( list( l_inp.lower() ) )
-
-    return l
-
-LETTERS = inp_letters()
-
-
-## Funtion to count letters
-def count_letters(letters) :
-    d = dict()
-
-    for letter in letters :
-        if letter not in d :
-            d[letter] = 1
-        else :
-            d[letter] += 1
-    
-    print("# ANZAHL DER BUCHSTABEN #")
-    print(f'''
-    Du hast folgende {sum(d.values())} Buchstaben: 
-    {[str(n) + "x " + a.upper() for a,n in d.items()]}
-    ''')
-
-    return d
-
-L_COUNT = count_letters(LETTERS)
-
-
-## Function to match letters to dictonary words
-def check_words(letters_dict, word_dict, letter_scores):
-    possible_words = {}
-    for word in word_dict:
-        score = 0
-        for i in range(len(word)) :
-            letter = word[i].lower()
-            if letter not in letters_dict :
-                break
-            
-            if letters_dict.get(letter) < word.count(letter) :
-                break
-            
-            score += letter_scores.get(letter.upper())
-            
-            if i == (len(word)-1):
-                possible_words[word] = score
-    
-    print("# MÖGLICHE WÖRTER #")
-    print(f'''
-    Folgende Wörter kannst du mit deinen Buchstaben bilden: 
-    {list(possible_words.keys())}''')
-
-    return possible_words
-
-WORDS = check_words(L_COUNT, WORD_DICT, LETTER_SCORES)         
-
-## Function to select highest-scoring word based on point(s) per letter
-def best_words(possible_words):
-    word_dict = [ (s,w) for w,s in possible_words.items() ]
-    word_dict = sorted( word_dict, reverse=True )
-    word_best = dict( [ (w,s) for s,w in word_dict[0:5] ] )
-    
-    # OPTIONAL: if there are multiplication fields at certain letter positions
-    # ... increase scores...
-
-    print("# WÖRTER MIT DEN MEISTEN PUNKTEN #")
-    print(f'''
-    Folgende Wörter bringen dir die meisten Punkte:
-    {word_best}
-    ''')
-    
-    return word_best
-
-WORDS_TOP5 = best_words(WORDS)
+    input("Hast du neue Buchstaben? Drücke ENTER zum Fortfahren...")
+    print("")
 
