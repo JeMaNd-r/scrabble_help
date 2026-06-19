@@ -52,6 +52,8 @@ while True:
     time.sleep(3)
 
     print("")
+    print("#########################################################")
+    print("")
     input("Hast du neue Buchstaben? Drücke ENTER zum Fortfahren...")
     print("")
 
