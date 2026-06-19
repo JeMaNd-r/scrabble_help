@@ -2,6 +2,9 @@
 
 This application provides suggestions for most-scoring words based on a given set of letters.
 
+This project may also serve as inspiration, because it is a #good-first-project to learn Python3 :)
+
+
 ## Getting Started
 
 Download the repository and run the *app.py* file using a terminal in VS Code or a command line interpreter (e.g. CMD). You will be asked to provide the letters without deliminator. Afterwards, the top 5 words scoring most points will be shown with their score. The score is based on the Scrabble scoring system. 
@@ -43,6 +46,8 @@ This is a personal learning project and is not open to contributions. Thank you 
 ## Versioning
 
 Potential updates:
+- add tests for input letters, e.g. digits or too few letters
+- extend word list to longer words
 - allow users to correct the scoring system
 - allow users to insert which position(s) in the word can get doubled or tripled points, or make the whole word count doubled or tripled
 - provide leftover letters if choosing one of the top 5 words
